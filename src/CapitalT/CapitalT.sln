@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30324.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalT", "CapitalT\CapitalT.csproj", "{76D81BCE-F064-4B5D-B3BA-3041129A05AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalT.Tests", "CapitalT.Tests\CapitalT.Tests.csproj", "{B03348B3-10B4-4D96-A2DA-101B655D2136}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalT.Owin", "CapitalT.Owin\CapitalT.Owin.csproj", "{F48513B8-7718-4160-815E-798F6B052CF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalT.Autofac", "CapitalT.Autofac\CapitalT.Autofac.csproj", "{2DBB859A-06B1-4D17-84D0-7701BB81DE06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{C2180D03-4B1E-4D88-9BAB-F3003D818A4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalT.Examples.Owin.SystemWeb", "Examples\CapitalT.Examples.Owin.SystemWeb\CapitalT.Examples.Owin.SystemWeb.csproj", "{6B383B2B-71F4-475C-81A2-888516C14FB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalT.Examples.ConsoleApp", "Examples\CapitalT.Examples.ConsoleApp\CapitalT.Examples.ConsoleApp.csproj", "{69A6957C-4A65-478C-9FB7-F2D3DC77FC08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4ECF7893-E2E6-4E3B-B95D-052084DD4AAA}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76D81BCE-F064-4B5D-B3BA-3041129A05AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76D81BCE-F064-4B5D-B3BA-3041129A05AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76D81BCE-F064-4B5D-B3BA-3041129A05AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76D81BCE-F064-4B5D-B3BA-3041129A05AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B03348B3-10B4-4D96-A2DA-101B655D2136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B03348B3-10B4-4D96-A2DA-101B655D2136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B03348B3-10B4-4D96-A2DA-101B655D2136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B03348B3-10B4-4D96-A2DA-101B655D2136}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F48513B8-7718-4160-815E-798F6B052CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F48513B8-7718-4160-815E-798F6B052CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F48513B8-7718-4160-815E-798F6B052CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F48513B8-7718-4160-815E-798F6B052CF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DBB859A-06B1-4D17-84D0-7701BB81DE06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DBB859A-06B1-4D17-84D0-7701BB81DE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DBB859A-06B1-4D17-84D0-7701BB81DE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DBB859A-06B1-4D17-84D0-7701BB81DE06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B383B2B-71F4-475C-81A2-888516C14FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B383B2B-71F4-475C-81A2-888516C14FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B383B2B-71F4-475C-81A2-888516C14FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B383B2B-71F4-475C-81A2-888516C14FB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69A6957C-4A65-478C-9FB7-F2D3DC77FC08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69A6957C-4A65-478C-9FB7-F2D3DC77FC08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69A6957C-4A65-478C-9FB7-F2D3DC77FC08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69A6957C-4A65-478C-9FB7-F2D3DC77FC08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6B383B2B-71F4-475C-81A2-888516C14FB6} = {C2180D03-4B1E-4D88-9BAB-F3003D818A4D}
+		{69A6957C-4A65-478C-9FB7-F2D3DC77FC08} = {C2180D03-4B1E-4D88-9BAB-F3003D818A4D}
+	EndGlobalSection
+EndGlobal
