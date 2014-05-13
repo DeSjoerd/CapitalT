@@ -9,6 +9,6 @@ namespace CapitalT.Owin
 {
     public static class AppBuilderExtensions
     {
-        public static void UseCapitalT(this IAppBuilder app, CapitalTOptions options);
+        //public static void UseCapitalT(this IAppBuilder app, CapitalTOptions options);
     }
 }
