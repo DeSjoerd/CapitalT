@@ -1,11 +1,12 @@
-﻿using Owin;
+﻿using CapitalT.Owin;
+using Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapitalT.Owin
+namespace Owin
 {
     public static class AppBuilderExtensions
     {
