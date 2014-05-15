@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapitalT.Caching;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -45,13 +46,23 @@ namespace CapitalT.Translate
                     catch (CultureNotFoundException) { }
                 }
                 availableCultures = cultures.AsEnumerable();
-                
+
                 _memCache.Add(
-                    new CacheItem(AppCulturesCacheKey, availableCultures), 
-                    CreateCacheItemPolicyWithFileMonitor(new List<FileSystemInfo>{ directory }.Union(localeDirectories))
+                    new CacheItem(AppCulturesCacheKey, availableCultures),
+                    CreateCulturesCacheItemPolicy()
                 );
             }
             return availableCultures;
+        }
+
+        private CacheItemPolicy CreateCulturesCacheItemPolicy()
+        {
+                        var policy = new CacheItemPolicy();
+            policy.SlidingExpiration = TimeSpan.FromDays(1);
+
+            policy.ChangeMonitors.Add(new DirectoryChangeMonitor(_rootDirectory.FullName, "*.po", true));
+
+            return policy;
         }
 
         public Dictionary<string, string> GetTranslations(CultureInfo culture)
@@ -66,7 +77,7 @@ namespace CapitalT.Translate
                     translations = new Dictionary<string, string>();
                     _memCache.Add(
                         new CacheItem(cacheKey, translations),
-                        CreateCacheItemPolicyWithFileMonitor(new[] { _rootDirectory })
+                        CreateCacheItemPolicy()
                     );
                 }
                 else
@@ -89,7 +100,7 @@ namespace CapitalT.Translate
                     translations = localizedStrings;
                     _memCache.Add(
                         new CacheItem(cacheKey, translations),
-                        CreateCacheItemPolicyWithFileMonitor(new FileSystemInfo[] {_rootDirectory}.Union(translationFiles))
+                        CreateCacheItemPolicy()
                     );
                 }
             }
@@ -100,6 +111,16 @@ namespace CapitalT.Translate
         {
             var cultureName = culture.Name;
             return new DirectoryInfo(Path.Combine(_rootDirectory.FullName, cultureName));
+        }
+
+        private CacheItemPolicy CreateCacheItemPolicy()
+        {
+            var policy = new CacheItemPolicy();
+            policy.SlidingExpiration = TimeSpan.FromDays(1);
+
+            policy.ChangeMonitors.Add(_memCache.CreateCacheEntryChangeMonitor(new [] { AppCulturesCacheKey }));
+
+            return policy;
         }
 
         private static readonly Dictionary<char, char> _escapeTranslations = new Dictionary<char, char> {
@@ -224,13 +245,6 @@ namespace CapitalT.Translate
         private static string GetLocalizedStringsCacheKey(CultureInfo culture)
         {
             return "po:" + culture.Name;
-        }
-
-        private static CacheItemPolicy CreateCacheItemPolicyWithFileMonitor(IEnumerable<FileSystemInfo> files)
-        {
-            var policy = new CacheItemPolicy();
-            policy.ChangeMonitors.Add(new HostFileChangeMonitor(files.Select(f => f.FullName).ToList()));
-            return policy;
         }
     }
 }

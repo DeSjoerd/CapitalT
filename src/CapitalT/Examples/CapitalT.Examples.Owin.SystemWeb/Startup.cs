@@ -8,11 +8,27 @@ using System.Globalization;
 using CapitalT.Autofac;
 using CapitalT.Owin;
 using CapitalT.Owin.Culture;
+using Autofac.Integration.Owin;
 
 [assembly: OwinStartup(typeof(CapitalT.Examples.Owin.SystemWeb.Startup))]
 
 namespace CapitalT.Examples.Owin.SystemWeb
 {
+    public class Test {
+
+        public Test()
+        {
+
+        }
+
+        public Localizer T { get; set; }
+
+        public string GetText()
+        {
+            return T("Text").Text;
+        }
+    }
+
     public class Startup
     {
         public void Configuration(IAppBuilder app)
@@ -23,12 +39,22 @@ namespace CapitalT.Examples.Owin.SystemWeb
             
             app.UseCapitalT(new CapitalTOptions(new ICultureSelector[] { new HttpHeaderCultureSelector() }));
 
-            Debugger.Break();
+            app.Run((context) =>
+            {
+                var lifetime = context.GetAutofacLifetimeScope();
+                var text = lifetime.Resolve<Test>().GetText();
+
+                context.Response.Write(text);
+
+                return Task.FromResult(0);
+            });
         }
 
         private ILifetimeScope BuildContainer()
         {
             var builder = new ContainerBuilder();
+
+            builder.RegisterType<Test>();
 
             builder.RegisterModule<CapitalTModule>();
             builder.RegisterModule<CapitalTOwinModule>();

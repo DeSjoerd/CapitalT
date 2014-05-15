@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caching\DirectoryChangeMonitor.cs" />
     <Compile Include="Capital.cs" />
     <Compile Include="CapitalConfig.cs" />
     <Compile Include="LocalizedString.cs" />

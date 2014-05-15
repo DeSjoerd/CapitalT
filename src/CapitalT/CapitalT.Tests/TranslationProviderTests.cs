@@ -22,7 +22,11 @@ namespace CapitalT.Tests
         {
             // gets the available cultures, located in Bin/Debug
             var translationProvider = new TranslationProvider(IOHelpers.GetOrCreateLocalizationRootDirectory());
-            var cultures = translationProvider.GetAvailableCultures();
+
+            for (var i = 0; i < 100000; i++)
+            {
+                var cultures = translationProvider.GetAvailableCultures();
+            }
         }
 
         [TestMethod]

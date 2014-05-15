@@ -12,7 +12,9 @@ namespace CapitalT.Examples.Owin.SystemWeb
     {
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
+            builder.RegisterType<OwinUserCultureAccessor>()
+                .As<IUserCultureAccessor>()
+                .InstancePerRequest();
         }
 
         internal class OwinUserCultureAccessor : IUserCultureAccessor

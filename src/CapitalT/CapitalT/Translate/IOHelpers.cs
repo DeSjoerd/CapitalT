@@ -10,7 +10,7 @@ namespace CapitalT.Translate
     internal class IOHelpers
     {
         private const string AppDataFolder = "App_Data";
-        private const string LocalizationFolder = "Localization";
+        private const string LocalizationFolder = @"Localization\";
 
         internal static string GetAppDataPath()
         {
@@ -28,6 +28,7 @@ namespace CapitalT.Translate
             if (!directory.Exists)
             {
                 directory.Create();
+                directory = new DirectoryInfo(GetLocalizationFolderPath());
             }
             return directory;
         }

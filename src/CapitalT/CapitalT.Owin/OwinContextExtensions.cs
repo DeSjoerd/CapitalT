@@ -1,4 +1,5 @@
-﻿using CapitalT.Owin;
+﻿using CapitalT;
+using CapitalT.Owin;
 using Microsoft.Owin;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace Microsoft.Owin
     {
         public static CultureInfo GetUserCulture(this IOwinContext owinContext)
         {
-            return owinContext.Get<CultureInfo>(OwinKeys.UserCultureKey);
+            var culture = owinContext.Get<CultureInfo>(OwinKeys.UserCultureKey);
+            return culture != null ? culture : Capital.DefaultCulture;
         }
     }
 }
