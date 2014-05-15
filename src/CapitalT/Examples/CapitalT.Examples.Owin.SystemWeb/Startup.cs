@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.Owin;
 using Owin;
 using System.Diagnostics;
+using Autofac;
+using System.Globalization;
+using CapitalT.Autofac;
 
 [assembly: OwinStartup(typeof(CapitalT.Examples.Owin.SystemWeb.Startup))]
 
@@ -17,5 +20,31 @@ namespace CapitalT.Examples.Owin.SystemWeb
 
             Debugger.Break();
         }
+
+        private ILifetimeScope BuildContainer()
+        {
+            var builder = new ContainerBuilder();
+
+            builder.Register(context => new OwinUserCultureAccessor(context.Resolve<IOwinContext>()))
+                .As<IUserCultureAccessor>()
+                .InstancePerRequest();
+
+            return builder.Build();
+        }
+
+        private class OwinUserCultureAccessor : IUserCultureAccessor
+        {
+            private IOwinContext _context;
+            public OwinUserCultureAccessor(IOwinContext context)
+            {
+                this._context = context;
+            }
+
+            public CultureInfo Get()
+            {
+                return _context.GetUserCulture();
+            }
+        }
+
     }
 }

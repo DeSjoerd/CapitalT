@@ -1,5 +1,4 @@
-﻿using CapitalT.Culture;
-using CapitalT.Translate;
+﻿using CapitalT.Translate;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -59,12 +58,12 @@ namespace CapitalT
             return new Text(scope, culture, Config.LocalizedStringService).Get;
         }
 
-        public static Localizer TFor<Scope>(UserCulture culture)
+        public static Localizer TFor<Scope>(Lazy<CultureInfo> culture)
         {
             return TFor(typeof(Scope), culture);
         }
 
-        public static Localizer TFor(Type scope, UserCulture culture)
+        public static Localizer TFor(Type scope, Lazy<CultureInfo> culture)
         {
             if (scope == null)
             {
@@ -73,7 +72,7 @@ namespace CapitalT
             return TFor(scope.FullName, culture);
         }
 
-        public static Localizer TFor(string scope, UserCulture culture)
+        public static Localizer TFor(string scope, Lazy<CultureInfo> culture)
         {
             if (culture == null)
             {

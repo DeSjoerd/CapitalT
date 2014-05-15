@@ -42,8 +42,6 @@
   <ItemGroup>
     <Compile Include="Capital.cs" />
     <Compile Include="CapitalConfig.cs" />
-    <Compile Include="Culture\ICultureSelector.cs" />
-    <Compile Include="Culture\UserCulture.cs" />
     <Compile Include="LocalizedString.cs" />
     <Compile Include="Localizer.cs" />
     <Compile Include="NullLocalizer.cs" />

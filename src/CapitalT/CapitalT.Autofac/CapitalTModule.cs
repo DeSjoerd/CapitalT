@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Autofac.Core;
-using CapitalT.Culture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,21 +12,6 @@ namespace CapitalT.Autofac
 {
     public class CapitalTModule : Module
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<UserCulture>()
-                .InstancePerLifetimeScope()
-                .PreserveExistingDefaults();
-
-            builder.Register((context) => Capital.Config.LocalizedStringService)
-                .As<CapitalT.Translate.ILocalizedStringService>()
-                .PreserveExistingDefaults();
-
-            builder.Register((context) => Capital.Config.TranslationProvider)
-                .As<CapitalT.Translate.ITranslationProvider>()
-                .PreserveExistingDefaults();
-        }
-
         protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration)
         {
             var hasLocalizerInConstructor = registration.Activator.LimitType
@@ -42,7 +26,7 @@ namespace CapitalT.Autofac
                     args.Parameters = args.Parameters.Union(new Parameter[] { 
                         new ResolvedParameter(
                             (param, context) => param.ParameterType == typeof(Localizer), 
-                            (param, context) => Capital.TFor(scope, context.Resolve<UserCulture>())
+                            (param, context) => Capital.TFor(scope, context.Resolve<IUserCultureAccessor>().Get())
                         )
                     });
                 };
@@ -56,7 +40,7 @@ namespace CapitalT.Autofac
 
                     registration.Activated += (sender, e) =>
                     {
-                        var localizer = Capital.TFor(scope, e.Context.Resolve<UserCulture>());
+                        var localizer = Capital.TFor(scope, e.Context.Resolve<IUserCultureAccessor>().Get());
                         capitalTProperty.SetValue(e.Instance, localizer, null);
                     };
                 }

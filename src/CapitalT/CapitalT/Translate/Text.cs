@@ -1,5 +1,4 @@
-﻿using CapitalT.Culture;
-using CapitalT.Translate;
+﻿using CapitalT.Translate;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -25,10 +24,10 @@ namespace CapitalT.Translate
             this._localizedStringService = localizedStringService;
         }
 
-        internal Text(string scope, UserCulture culture, ILocalizedStringService localizedStringService)
+        internal Text(string scope, Lazy<CultureInfo> culture, ILocalizedStringService localizedStringService)
         {
             this._scope = scope;
-            this._culture = new Lazy<CultureInfo>(() => culture.Culture);
+            this._culture = culture;
             this._localizedStringService = localizedStringService;
         }
 

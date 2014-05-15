@@ -9,6 +9,13 @@ namespace CapitalT.Owin
 {
     public static class AppBuilderExtensions
     {
-        //public static void UseCapitalT(this IAppBuilder app, CapitalTOptions options);
+        public static void UseCapitalT(this IAppBuilder app, CapitalTOptions options)
+        {
+            if (options == null)
+            {
+                throw new ArgumentNullException("options");
+            }
+            app.Use<CapitalTMiddleware>(options);
+        }
     }
 }

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.Owin;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapitalT.Culture
+namespace CapitalT.Owin.Culture
 {
     public class CultureSelectorResult
     {
@@ -16,6 +17,6 @@ namespace CapitalT.Culture
 
     public interface ICultureSelector
     {
-        IEnumerable<CultureSelectorResult> GetUserCultures();
+        IEnumerable<CultureSelectorResult> GetUserCultures(IOwinContext owinContext);
     }
 }
